@@ -69,11 +69,11 @@ namespace LoRCards
 
             foreach (var card in searchResults)
             {
-                result.Add(new InlineQueryResultPhoto(id: card.cardCode, card.imageUrl, card.imageUrl)
+                result.Add(new InlineQueryResultPhoto(id: card.cardCode, card.imageUrl, card.thumbImageUrl)
                 {
                     Caption = card.name,
-                    PhotoHeight = 680,
-                    PhotoWidth = 1024,
+                    PhotoHeight = 181,
+                    PhotoWidth = 120,
                 });
             }
 

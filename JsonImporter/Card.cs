@@ -39,16 +39,24 @@ namespace LoRCards
         public string type { get; set; }
         public bool collectible { get; set; }
 
+        private readonly string urlPrefixCards = "https://lmagic.azurewebsites.net/image/lorcards/";
         public override string ToString()
         {
             return $"{name}";
         }
 
+        public string thumbImageUrl
+        {
+            get
+            {
+                
+                return $"{urlPrefixCards}/thumbs/{cardCode}_resize.jpeg";
+            }
+        }
         public string imageUrl
         {
             get
             {
-                string urlPrefixCards = "https://lmagic.azurewebsites.net/image/lorcards/";
                 return $"{urlPrefixCards}{cardCode}.jpg";
             }
         }
