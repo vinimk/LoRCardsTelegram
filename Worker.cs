@@ -45,7 +45,10 @@ namespace LoRCards
                 return;
             try
             {
-                var task = _botClient.AnswerInlineQueryAsync(e.InlineQuery.Id, GetInlineQueryResultPhotos(e.InlineQuery.Query), 6000000, true);
+                var inlineQueryResults = GetInlineQueryResultPhotos(e.InlineQuery.Query);
+                _logger.LogInformation($"Query:{e.InlineQuery.Query} results:{inlineQueryResults.Count()}");
+
+                var task = _botClient.AnswerInlineQueryAsync(e.InlineQuery.Id, inlineQueryResults, 6000000, true);
                 task.Wait();
             }
             catch (Exception ex)
@@ -100,7 +103,6 @@ namespace LoRCards
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(1000, stoppingToken);
             }
         }
