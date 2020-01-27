@@ -46,7 +46,7 @@ namespace LoRCards
             try
             {
                 var inlineQueryResults = GetInlineQueryResultPhotos(e.InlineQuery.Query);
-                _logger.LogInformation($"Query:{e.InlineQuery.Query} results:{inlineQueryResults.Count()}");
+                _logger.LogInformation($"Query:{e.InlineQuery.Query} From:{e.InlineQuery.From.FirstName} {e.InlineQuery.From.LastName} Results:{inlineQueryResults.Count()}");
 
                 var task = _botClient.AnswerInlineQueryAsync(e.InlineQuery.Id, inlineQueryResults, 6000000, true);
                 task.Wait();
@@ -66,7 +66,7 @@ namespace LoRCards
                                                     x.descriptionRaw.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
                                                     x.region.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
                                                     x.keywords.Where(y => y.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1).Any()).Take(50);
-            int i = 0;
+
             foreach (var card in searchResults)
             {
                 result.Add(new InlineQueryResultPhoto(id: card.cardCode, card.imageUrl, card.imageUrl)
@@ -74,26 +74,7 @@ namespace LoRCards
                     Caption = card.name,
                     PhotoHeight = 680,
                     PhotoWidth = 1024,
-                    
                 });
-                //        InlineQueryResultArticle resultPhoto = new InlineQueryResultArticle(
-                //// id's should be unique for each type of response
-                //id: card.cardCode,
-                //// Title of the option
-                //title: card.name,
-                //// This is what is returned
-                //new InputTextMessageContent("text that is returned") { ParseMode = Telegram.Bot.Types.Enums.ParseMode.Default })
-                //        {
-                //            // This is just the description shown for the option
-                //            Description = "test"
-                //        };
-                //InlineQueryResultPhoto resultPhoto = new InlineQueryResultPhoto(card.cardCode, card.imageUrl, card.imageUrl);
-                //resultPhoto.Description = card.name;
-                //resultPhoto.Caption = card.name;
-                //resultPhoto.Title = card.name;
-                //result.Add(resultPhoto);
-                i++;
-
             }
 
             return result;
