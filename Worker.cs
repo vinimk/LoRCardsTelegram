@@ -22,23 +22,12 @@ namespace LoRCards
             _botClient = new Telegram.Bot.TelegramBotClient(telegramWorkerOptions.APIKey);
             _cards = JsonImporter.JsonImporter.ReadCardsFromJson();
             _botClient.OnInlineQuery += _botClient_OnInlineQuery;
-            //_botClient.OnInlineResultChosen += _botClient_OnInlineResultChosen;
             _botClient.StartReceiving();
         }
 
-        //private void _botClient_OnInlineResultChosen(object sender, Telegram.Bot.Args.ChosenInlineResultEventArgs e)
-        //{
-        //    Card chosenCard = _cards.Where(x => x.cardCode == e.ChosenInlineResult.ResultId).FirstOrDefault();
-        //    if (chosenCard != null)
-        //    {
-        //        _botClient.SendPhotoAsync(e.ChosenInlineResult.From.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(chosenCard.imageUrl), chosenCard.name);
-        //    }
-        //}
 
         private void _botClient_OnInlineQuery(object sender, Telegram.Bot.Args.InlineQueryEventArgs e)
         {
-            //var chosenCard = _cards[0];
-            //_botClient.SendPhotoAsync(e.InlineQuery.From.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(chosenCard.imageUrl), chosenCard.name);
             if (e.InlineQuery.Query == null)
                 return;
             if (e.InlineQuery.Query == "")
