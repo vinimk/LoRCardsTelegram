@@ -65,6 +65,10 @@ namespace LoRCards
                                                     x.type.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
                                                     x.descriptionRaw.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
                                                     x.region.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
+                                                    x.levelupDescriptionRaw.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
+                                                    x.region.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
+                                                    x.subtype.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
+                                                    x.supertype.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1 ||
                                                     x.keywords.Where(y => y.IndexOf(query, StringComparison.OrdinalIgnoreCase) != -1).Any()).Take(50);
 
             foreach (var card in searchResults)
