@@ -39,7 +39,7 @@ namespace LoRCards
         public string type { get; set; }
         public bool collectible { get; set; }
 
-        private readonly string urlPrefixCards = "https://lmagic.azurewebsites.net/image/lorcards/";
+        private readonly string urlPrefixCards = "https://lmagic.azurewebsites.net/image/lorcardsv2/";
         public override string ToString()
         {
             return $"{name}";
@@ -50,7 +50,7 @@ namespace LoRCards
             get
             {
                 
-                return $"{urlPrefixCards}/thumbs/{cardCode}_resize.jpeg";
+                return $"{urlPrefixCards}/thumbs/{cardCode}.jpg";
             }
         }
         public string imageUrl
